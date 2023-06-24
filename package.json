@@ -21,7 +21,7 @@
     "dist/"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/akiijadhav"
   },
   "scripts": {
     "prepare": "npm run format && webpack",
