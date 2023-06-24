@@ -13,41 +13,6 @@ npm install report-module
 After installing, you need to import the module and the associated styles in your application. Here is a simple example:
 
 ```javascript
-import ReportModule from 'report-module'; // Import the Component / Page from the package
-import 'report-module/dist/main.css';
-```
-
-Then you can use it in your code like any React component:
-
-```javascript
-function MyApp() {
-  return (
-    <div>
-      <ReportModule />
-    </div>
-  );
-}
-```
-
-Absolutely, here's the complete README.md content:
-
-markdown
-Copy code
-# Report Module
-
-This package is a micro frontend module that provides reporting functionalities to sync data between an online and an offline application. It uses Next.js, TypeScript, and React Table.
-
-## Installation
-
-To install this package, run the following command:
-```bash
-npm install report-module
-```
-## Usage
-
-After installing, you need to import the module and the associated styles in your application. Here is a simple example:
-
-```javascript
 import ReportModule from 'report-module';
 import 'report-module/dist/main.css';
 ```
