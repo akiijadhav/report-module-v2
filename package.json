@@ -24,7 +24,6 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "scripts": {
-    "prepublishOnly": "tsc --emitDeclarationOnly",
     "prepare": "npm run format && webpack",
     "dev": "next dev",
     "build": "npm run format && next build",
