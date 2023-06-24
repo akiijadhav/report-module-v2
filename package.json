@@ -1,6 +1,6 @@
 {
   "name": "report-module",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "Micro Frontend Report Module to sync data between Online & Offline App",
   "main": "dist/main.js",
   "keywords": [
