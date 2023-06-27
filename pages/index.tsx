@@ -1,9 +1,9 @@
 import React, { ReactElement, useEffect } from 'react';
 import Link from 'next/link';
-import Layout from '../components/Layouts/Layout';
-import PageContainer from '../components/Layouts/page-container';
-
+import UserLayout from '../components/layouts/user-layout';
+import { useTranslation } from 'react-i18next';
 const HomePage = () => {
+  const { t } = useTranslation();
   return (
     <div>
       <p>Hello Next.js This is a Home page!</p>
@@ -15,7 +15,7 @@ const HomePage = () => {
       hover:bg-emerald-500 w-24 h-[20px] px-4 py-0"
           href={'/reports'}
         >
-          Reports
+          {t('home.reports')}
         </Link>
       </p>
     </div>
@@ -24,9 +24,9 @@ const HomePage = () => {
 
 HomePage.getLayout = function getLayout(page: ReactElement) {
   return (
-    <Layout>
-      <PageContainer>{page}</PageContainer>
-    </Layout>
+    <UserLayout>
+      {page}
+    </UserLayout>
   );
 };
 

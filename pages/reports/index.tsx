@@ -1,8 +1,7 @@
 import React, { useState, useEffect, ReactElement } from 'react';
 import axios from 'axios';
 import Button from '../../components/Button';
-import Layout from '../../components/Layouts/Layout';
-import PageContainer from '../../components/Layouts/page-container';
+import UserLayout from '../../components/layouts/user-layout';
 import Link from 'next/link';
 import { I18nextProvider, useTranslation } from 'react-i18next';
 import i18n from '../../i18n';
@@ -37,7 +36,7 @@ const ReportPageComponent = () => {
   const defaultData: Country[] = [...countries];
 
   const columns = [
-    columnHelper.accessor('name.common', { header: t('country_name') }),
+    columnHelper.accessor('name.common', { header: t('table.country_name') }),
     columnHelper.accessor('unMember', { header: 'UN Member' }),
     columnHelper.accessor('region', { header: 'Region' }), // Specify the header for the column and access the name using dot notation
   ];
@@ -50,7 +49,7 @@ const ReportPageComponent = () => {
 
   return (
     <div>
-      <p className="my-8">This is the reports page!</p>
+      <p className="my-8">This is the {t('home.reports')} page!</p>
       <p>
         Go to &nbsp;
         <Link
@@ -101,9 +100,9 @@ const ReportPageComponent = () => {
 
 ReportPageComponent.getLayout = function getLayout(page: ReactElement) {
   return (
-    <Layout>
-      <PageContainer>{page}</PageContainer>
-    </Layout>
+    <UserLayout>
+      {page}
+    </UserLayout>
   );
 };
 

@@ -1,29 +1,25 @@
 import i18n from 'i18next';
-import Backend from 'i18next-fs-backend';
 import { initReactI18next } from 'react-i18next';
 import enTranslation from './public/locales/en.json';
 import jaTranslation from './public/locales/ja.json';
-import path from 'path';
-
-const isServer = typeof window === 'undefined';
 
 i18n
-  .use(initReactI18next)
+  .use(initReactI18next) // Passes i18n down to react-i18next
   .init({
-    lng: 'en',
-    fallbackLng: 'en',
-    supportedLngs: ['en', 'ja'],
-    resources: isServer ? {} : {
-      en: { translation: enTranslation },
-      ja: { translation: jaTranslation },
+    resources: {
+      en: { 
+        translation: enTranslation 
+      },
+      ja: { 
+        translation: jaTranslation 
+      }
     },
-    backend: isServer ? {
-      loadPath: path.join(__dirname, '/public/locales/{{lng}}.json'),
-    } : {},
-  });
+    lng: "en", // language to use, more information here: https://www.i18next.com/overview/configuration-options#languages-namespaces-resources
+    fallbackLng: "en", // use en if detected lng is not available
 
-if (isServer) {
-  i18n.use(Backend);
-}
+    interpolation: {
+      escapeValue: false // react already safes from xss
+    }
+  });
 
 export default i18n;

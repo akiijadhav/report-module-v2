@@ -41,10 +41,6 @@ module.exports = {
         use: ['babel-loader', 'ts-loader'],
       },
       {
-        test: /\.json$/,
-        loader: 'json-loader'
-      },
-      {
         test: /\.css$/,
         use: [
           MiniCssExtractPlugin.loader,
