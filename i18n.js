@@ -1,6 +1,8 @@
 import i18n from 'i18next';
 import Backend from 'i18next-http-backend';
 import { initReactI18next } from 'react-i18next';
+import enTranslation from './public/locales/en.json'
+import jaTranslation from './public/locales/ja.json';
 
 i18n
   .use(Backend)
@@ -10,7 +12,11 @@ i18n
     fallbackLng: 'en',
     supportedLngs: ['en', 'ja'],
     backend: {
-      loadPath: `/locales/{{lng}}.json`,
+      loadPath: `./public/locales/{{lng}}.json`,
+    },
+    resources: {
+      en: { translation: enTranslation },
+      ja: { translation: jaTranslation },
     },
   });
 
