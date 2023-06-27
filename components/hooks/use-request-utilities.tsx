@@ -86,7 +86,6 @@ function useRequestUtilities() {
 
   return {
     fetchWrapper,
-    nextJsRouter: router,
     logoutUser,
   };
 }

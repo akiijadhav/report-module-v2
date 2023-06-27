@@ -8,13 +8,14 @@ import PageContainer from '../../components/users/page-container';
 import { NewReportDetail } from '../../components/new-reports/models/new-report-detail';
 import NewReportTable from '../../components/new-reports/new-report-table';
 import { I18nextProvider } from 'react-i18next';
+import { useRouter } from 'next/router';
 import i18n from '../../i18n';
 
-const ReportPageComponent: NextPageWithLayout = function () {
+const ReportPageComponent: NextPageWithLayout = () => {
+  const router = useRouter()
   const {
     fetchWrapper,
     logoutUser,
-    nextJsRouter: router,
   } = useRequestUtilities();
   const refetchReports =
     typeof router.query.refetch === 'string'
