@@ -4,7 +4,8 @@ import Button from '../../components/Button';
 import Layout from '../../components/Layouts/Layout';
 import PageContainer from '../../components/Layouts/page-container';
 import Link from 'next/link';
-import { useTranslation } from 'react-i18next';
+import { I18nextProvider, useTranslation } from 'react-i18next';
+import i18n from '../../i18n';
 import {
   createColumnHelper,
   flexRender,
@@ -12,7 +13,7 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 
-const ReportPage = () => {
+const ReportPageComponent = () => {
   const [countries, setCountries] = useState([]);
   const { t } = useTranslation();
 
@@ -98,12 +99,18 @@ const ReportPage = () => {
   );
 };
 
-ReportPage.getLayout = function getLayout(page: ReactElement) {
+ReportPageComponent.getLayout = function getLayout(page: ReactElement) {
   return (
     <Layout>
       <PageContainer>{page}</PageContainer>
     </Layout>
   );
 };
+
+export const ReportPage = () => (
+  <I18nextProvider i18n={i18n}>
+    <ReportPageComponent />
+  </I18nextProvider>
+);
 
 export default ReportPage;
