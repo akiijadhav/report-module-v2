@@ -2,7 +2,6 @@ export const en = {
   translation: {
     header: {
       language: 'Language',
-
       en: 'English',
       report_list: 'Reports',
       data_source_list: 'Data Sources',

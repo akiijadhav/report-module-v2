@@ -39,6 +39,7 @@
     "axios": "^1.4.0",
     "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",
+    "copy-webpack-plugin": "^11.0.0",
     "i18next": "^23.2.3",
     "next": ">=13.0.6",
     "postcss-loader": "^7.3.3",

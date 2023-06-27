@@ -2,7 +2,6 @@ export const ja = {
   translation: {
     header: {
       language: '言語',
-
       ja: '日本語',
       report_list: '報告書',
       data_source_list: 'データソース',

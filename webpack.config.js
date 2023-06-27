@@ -74,6 +74,11 @@ module.exports = {
       openAnalyzer: false, // Will not open the report in a new window
     }),
     new CleanWebpackPlugin(),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'public', to: 'public' } // copies all files from public to dist/public
+      ],
+    }),
   ],
   optimization: {
     minimize: true,
