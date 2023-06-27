@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import tooltipArrow from '../../public/icons/tooltip-arrow.svg';
 
 export default function RocTooltip(props: {

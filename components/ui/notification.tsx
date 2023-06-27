@@ -3,7 +3,7 @@ import successIcon from '../../public/icons/success-icon.svg';
 import failureIcon from '../../public/icons/failure-icon.svg';
 import loaderIcon from '../../public/icons/loader.svg';
 import crossIcon from '../../public/icons/cross-icon.svg';
-import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
+import React, { Dispatch, SetStateAction, useEffect, useRef } from 'react';
 
 export type responseMsgType =
   | {
