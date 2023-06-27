@@ -41,6 +41,7 @@
     "buffer": "^6.0.3",
     "copy-webpack-plugin": "^11.0.0",
     "i18next": "^23.2.3",
+    "i18next-fs-backend": "^2.1.5",
     "next": ">=13.0.6",
     "postcss-loader": "^7.3.3",
     "react": ">=18.2.0",
