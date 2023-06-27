@@ -11,11 +11,9 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { useRouter } from 'next/router';
 
 const ReportPage = () => {
   const [countries, setCountries] = useState([]);
-  const router = useRouter();
   const { t } = useTranslation();
 
   useEffect(() => {
