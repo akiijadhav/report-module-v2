@@ -97,12 +97,12 @@ const ReportPageComponent: NextPageWithLayout = function () {
       fetchReports(Boolean(refetchReports));
     }
   }, [refetchReports]);
-  
+
   useEffect(() => {
     console.log(i18n, 'i18n');
-    
+
     i18n.changeLanguage(router.locale).then(() => {
-      console.log(i18n.language, 'language in reports page');  // Print out the current language
+      console.log(i18n.language, 'language in reports page'); // Print out the current language
     });
   }, [router.locale]);
 
@@ -154,7 +154,6 @@ const ReportPageComponent: NextPageWithLayout = function () {
   );
 };
 
-
 ReportPageComponent.getLayout = function getLayout(page: ReactElement) {
   return (
     <UserLayout>
@@ -162,8 +161,6 @@ ReportPageComponent.getLayout = function getLayout(page: ReactElement) {
     </UserLayout>
   );
 };
-
-
 
 export const ReportPage = () => (
   <I18nextProvider i18n={i18n}>
