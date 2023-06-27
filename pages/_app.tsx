@@ -31,9 +31,9 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
 
   useEffect(() => {
     console.log(i18n.language, 'i18n');
-    
+
     i18n.changeLanguage(router.locale).then(() => {
-      console.log(i18n.language);  // Print out the current language
+      console.log(i18n.language); // Print out the current language
     });
   }, [router.locale]);
 

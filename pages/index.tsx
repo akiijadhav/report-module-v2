@@ -23,11 +23,7 @@ const HomePage = () => {
 };
 
 HomePage.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <UserLayout>
-      {page}
-    </UserLayout>
-  );
+  return <UserLayout>{page}</UserLayout>;
 };
 
 export default HomePage;

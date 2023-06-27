@@ -99,11 +99,7 @@ const ReportPageComponent = () => {
 };
 
 ReportPageComponent.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <UserLayout>
-      {page}
-    </UserLayout>
-  );
+  return <UserLayout>{page}</UserLayout>;
 };
 
 export const ReportPage = () => (
