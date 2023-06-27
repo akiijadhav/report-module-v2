@@ -17,6 +17,15 @@ module.exports = {
     globalObject: 'this',
   },
   resolve: {
+    fallback: {
+      assert: require.resolve('assert'),
+      buffer: require.resolve('buffer'),
+      util: require.resolve('util'),
+      fs: false,
+      stream: require.resolve('stream-browserify'),
+      zlib: require.resolve('browserify-zlib'),
+    },
+    // existing resolve properties
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
       '@': path.resolve(__dirname),
@@ -64,7 +73,7 @@ module.exports = {
       analyzerMode: 'static', // Generates a static report file
       openAnalyzer: false, // Will not open the report in a new window
     }),
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
   ],
   optimization: {
     minimize: true,

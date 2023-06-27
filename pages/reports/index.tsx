@@ -15,8 +15,8 @@ import { useRouter } from 'next/router';
 
 const ReportPage = () => {
   const [countries, setCountries] = useState([]);
-  const router = useRouter(); 
-  const { t } = useTranslation()
+  const router = useRouter();
+  const { t } = useTranslation();
 
   useEffect(() => {
     axios
@@ -25,7 +25,7 @@ const ReportPage = () => {
       .then((data) => setCountries(data))
       .catch((error) => console.error(error));
 
-      router.locale = 'ja'
+    router.locale = 'ja';
   }, []);
 
   type Country = {
