@@ -25,6 +25,7 @@ module.exports = {
       fs: false,
       stream: require.resolve('stream-browserify'),
       zlib: require.resolve('browserify-zlib'),
+      path: require.resolve('path-browserify'),
     },
     // existing resolve properties
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
