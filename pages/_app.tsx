@@ -17,7 +17,7 @@ type AppPropsWithLayout = AppProps & {
 
 export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const router = useRouter();
-  
+
   useEffect(() => {
     i18n.changeLanguage(router.locale);
   }, [router.locale]);

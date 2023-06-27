@@ -359,5 +359,6 @@ export const ja = {
       downloading_report: 'Downloading report file(ja)',
       saving_data: 'Saving data(ja)',
     },
+    country_name: '国の名前'
   },
 };

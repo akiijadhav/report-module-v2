@@ -382,5 +382,6 @@ export const en = {
       downloading_report: 'Downloading report file',
       saving_data: 'Saving data',
     },
+    country_name: 'Country Name'
   },
 };
