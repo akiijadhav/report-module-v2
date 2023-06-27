@@ -24,8 +24,6 @@ const ReportPage = () => {
       .then((res) => res.data.slice(0, 10))
       .then((data) => setCountries(data))
       .catch((error) => console.error(error));
-
-      router.push(router.pathname, router.asPath, { locale: 'ja' });
   }, []);
 
   type Country = {
