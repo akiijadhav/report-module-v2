@@ -7,6 +7,7 @@ import dropdownArrow from '../../public/icons/arrow-drop-down-fill.svg';
 import dropDownArrowBlack from '../../public/icons/dropDown_black.png';
 
 export default function Language() {
+  const router = useRouter();
   const [showLanguageChoices, setShowLanguageChoices] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const { t } = useTranslation();
@@ -17,7 +18,6 @@ export default function Language() {
       setIsLogin(false);
     }
   }, []);
-  const router = useRouter();
   const languageChoices = [
     {
       displayText: 'English',

@@ -87,6 +87,7 @@ function useRequestUtilities() {
   return {
     fetchWrapper,
     logoutUser,
+    router
   };
 }
 export default useRequestUtilities;
