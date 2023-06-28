@@ -18,7 +18,7 @@ const TestPage = () => {
     if (router.isReady) {
       timer = setTimeout(() => {
         setDelayRouter(true);
-      }, 1000); 
+      }, 10000);
     }
 
     return () => {
@@ -35,7 +35,9 @@ const TestPage = () => {
   return (
     <div>
       <h1>Test Page</h1>
-      {delayRouter && isMounted && <p>Router is ready: {router.isReady.toString()}</p>}
+      {delayRouter && isMounted && (
+        <p>Router is ready: {router.isReady.toString()}</p>
+      )}
     </div>
   );
 };
