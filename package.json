@@ -41,6 +41,7 @@
     "browserify-zlib": "^0.2.0",
     "buffer": "^6.0.3",
     "copy-webpack-plugin": "^11.0.0",
+    "formik": "^2.2.9",
     "i18next": "^23.2.3",
     "i18next-fs-backend": "^2.1.5",
     "i18next-http-backend": "^2.2.1",

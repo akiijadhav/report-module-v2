@@ -2,8 +2,14 @@ import React, { ReactElement, useEffect } from 'react';
 import Link from 'next/link';
 import UserLayout from '../components/layouts/user-layout';
 import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/router';
 const HomePage = () => {
+  const router = useRouter()
   const { t } = useTranslation();
+  useEffect(() => {
+    router.push('/login')
+  }, [])
+  
   return (
     <div>
       <p>Hello Next.js This is a Home page!</p>

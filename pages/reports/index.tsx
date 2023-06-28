@@ -8,6 +8,7 @@ import PageContainer from '../../components/users/page-container';
 import { NewReportDetail } from '../../components/new-reports/models/new-report-detail';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n';
+import NewReportTable from '../../components/new-reports/new-report-table';
 
 const ReportPageComponent: NextPageWithLayout = () => {
   const [isMounted, setIsMounted] = useState(false);
@@ -33,10 +34,15 @@ const ReportPageComponent: NextPageWithLayout = () => {
   let refetchReports: any;
 
   if (router.isReady) {
+    console.log({router});
+    
     refetchReports =
       typeof router.query.refetch === 'string'
         ? router.query.refetch
         : router.query?.refetch?.[0];
+
+        console.log({refetchReports});
+        
   }
 
   const fetchReports = useCallback(async function (Refetch = false) {
@@ -160,7 +166,7 @@ const ReportPageComponent: NextPageWithLayout = () => {
       <div className="py-4 px-6 flex items-center justify-between border-b border-gray-300 font-semibold text-xl text-gray-800">
         {t('reports.report_list_page_title')}
       </div>
-      <p>Hi Here goes the new report table</p>
+      <NewReportTable data={data}/>
     </>
   );
 };
