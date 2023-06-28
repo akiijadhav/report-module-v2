@@ -11,10 +11,17 @@ import i18n from '../../i18n';
 
 const ReportPageComponent: NextPageWithLayout = () => {
   const [isMounted, setIsMounted] = useState(false);
-  const [viewScreen, setViewScreen] = useState<'loading' | 'reportsAbsent' | 'reportsPresent' | 'responseError'>('loading');
+  const [viewScreen, setViewScreen] = useState<
+    'loading' | 'reportsAbsent' | 'reportsPresent' | 'responseError'
+  >('loading');
   const [responseErrorMsg, setResponseErrorMsg] = useState('');
   const [data, setData] = useState<NewReportDetail[]>([]);
   const { t } = useTranslation();
+
+  const utilities = useRequestUtilities();
+  let fetchWrapper = utilities.fetchWrapper;
+  let logoutUser = utilities.logoutUser;
+  let router = utilities.nextJsRouter;
 
   useEffect(() => {
     setIsMounted(true);
@@ -24,22 +31,12 @@ const ReportPageComponent: NextPageWithLayout = () => {
   }, []);
 
   let refetchReports: any;
-  let fetchWrapper: any;
-  let logoutUser: any;
-  let router: any;
 
-  if (isMounted) {
-    const utilities = useRequestUtilities();
-    fetchWrapper = utilities.fetchWrapper;
-    logoutUser = utilities.logoutUser;
-    router = utilities.nextJsRouter;
-
-    if (router.isReady) {
-      refetchReports =
-        typeof router.query.refetch === 'string'
-          ? router.query.refetch
-          : router.query?.refetch?.[0];
-    }
+  if (router.isReady) {
+    refetchReports =
+      typeof router.query.refetch === 'string'
+        ? router.query.refetch
+        : router.query?.refetch?.[0];
   }
 
   const fetchReports = useCallback(async function (Refetch = false) {

@@ -85,6 +85,12 @@ module.exports = {
   ],
   optimization: {
     minimize: true,
-    minimizer: [new TerserPlugin()],
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          sourceMap: true, // Enable source map support
+        },
+      }),
+    ],
   },
 };
