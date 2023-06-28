@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import { useRouter } from 'next/router';
 
-const router = useRouter();
 function useRequestUtilities() {
+  const router = useRouter();
 
   const logoutUser = useCallback(() => {
     localStorage.removeItem('userInfo');
