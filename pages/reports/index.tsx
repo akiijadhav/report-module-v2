@@ -16,14 +16,15 @@ const ReportPageComponent: NextPageWithLayout = () => {
     logoutUser,
     nextJsRouter: router,
   } = useRequestUtilities();
-  let refetchReports;
+  let refetchReports: any;
 
   if (router.isReady) {
-    refetchReports = typeof router.query.refetch === 'string'
-      ? router.query.refetch
-      : router.query?.refetch?.[0];
+    refetchReports =
+      typeof router.query.refetch === 'string'
+        ? router.query.refetch
+        : router.query?.refetch?.[0];
   }
-  
+
   type viewScreenType =
     | 'loading'
     | 'reportsAbsent'
