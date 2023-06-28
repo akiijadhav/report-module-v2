@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router';
 import React, { useCallback } from 'react';
+import {useRouter} from 'next/router';
 
 function useRequestUtilities() {
   const router = useRouter();
@@ -87,7 +87,7 @@ function useRequestUtilities() {
   return {
     fetchWrapper,
     logoutUser,
-    router
+    nextJsRouter: router,
   };
 }
 export default useRequestUtilities;

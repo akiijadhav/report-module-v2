@@ -11,7 +11,7 @@ import { I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n';
 
 const ReportPageComponent: NextPageWithLayout = () => {
-  const { fetchWrapper, logoutUser, router } = useRequestUtilities();
+  const { fetchWrapper, logoutUser, nextJsRouter: router } = useRequestUtilities();
   const refetchReports =
     typeof router.query.refetch === 'string'
       ? router.query.refetch
@@ -80,6 +80,8 @@ const ReportPageComponent: NextPageWithLayout = () => {
   }, []);
 
   useEffect(() => {
+    if (!router.isReady) return;
+  
     const accessToken = localStorage.getItem('accessToken');
     if (!accessToken) {
       logoutUser();
@@ -92,15 +94,15 @@ const ReportPageComponent: NextPageWithLayout = () => {
       }
       fetchReports(Boolean(refetchReports));
     }
-  }, [refetchReports]);
-
+  }, [router.isReady, refetchReports]);
+  
   useEffect(() => {
-    console.log(i18n, 'i18n');
-
+    if (!router.isReady) return;
+  
     i18n.changeLanguage(router.locale).then(() => {
       console.log(i18n.language, 'language in reports page'); // Print out the current language
     });
-  }, [router.locale]);
+  }, [router.isReady, router.locale]);
 
   if (viewScreen === 'loading') {
     return (

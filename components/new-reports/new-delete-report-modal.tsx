@@ -21,7 +21,7 @@ export default function NewDeleteReportModal(props: {
   incomplete?: boolean;
 }) {
   const { reportData, show, setShow, incomplete = false } = props;
-  const { fetchWrapper, router } = useRequestUtilities();
+  const { fetchWrapper, nextJsRouter: router } = useRequestUtilities();
   const [isDeletingReport, setIsDeletingReport] = useState(false);
   const [responseError, setResponseError] = useState('');
 
