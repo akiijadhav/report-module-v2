@@ -8,11 +8,9 @@ import PageContainer from '../../components/users/page-container';
 import { NewReportDetail } from '../../components/new-reports/models/new-report-detail';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n';
-import { useRouter } from 'next/router';
+import NewReportTable from '../../components/new-reports/new-report-table';
 
-const ReportPageComponent: NextPageWithLayout = async () => {
-  let router = useRouter();
-  const utilities = useRequestUtilities();
+const ReportPageComponent: NextPageWithLayout = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [viewScreen, setViewScreen] = useState<
     'loading' | 'reportsAbsent' | 'reportsPresent' | 'responseError'
@@ -21,8 +19,10 @@ const ReportPageComponent: NextPageWithLayout = async () => {
   const [data, setData] = useState<NewReportDetail[]>([]);
   const { t } = useTranslation();
 
+  const utilities = useRequestUtilities();
   let fetchWrapper = utilities.fetchWrapper;
   let logoutUser = utilities.logoutUser;
+  let router = utilities.nextJsRouter;
 
   useEffect(() => {
     setIsMounted(true);
@@ -165,7 +165,7 @@ const ReportPageComponent: NextPageWithLayout = async () => {
       <div className="py-4 px-6 flex items-center justify-between border-b border-gray-300 font-semibold text-xl text-gray-800">
         {t('reports.report_list_page_title')}
       </div>
-      <p>Hi this is the reports page</p>
+      <NewReportTable data={data}/>
     </>
   );
 };
