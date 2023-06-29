@@ -1,4 +1,4 @@
-import { ReactElement, useCallback, useEffect, useState } from 'react';
+import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import useRequestUtilities from '../../components/hooks/use-request-utilities';
 import UserLayout from '../../components/layouts/user-layout';
 import { NextPageWithLayout } from '../_app';
@@ -9,7 +9,7 @@ import { NewReportDetail } from '../../components/new-reports/models/new-report-
 import NewReportTable from '../../components/new-reports/new-report-table';
 import i18n from '../../i18n';
 import { I18nextProvider } from 'react-i18next';
-
+import { useSearchParams } from 'next/navigation';
 const ReportPageComponent: NextPageWithLayout = function () {
   const {
     nextJsRouter: router,
@@ -17,14 +17,14 @@ const ReportPageComponent: NextPageWithLayout = function () {
     fetchWrapper,
   } = useRequestUtilities();
   console.log(router, 'inside ReportPageComponent after calling hook');
+  const searchParams = useSearchParams();
 
   const refetchReports =
-    typeof router.query.refetch === 'string'
-      ? router.query.refetch
-      : router.query?.refetch?.at(0);
+    typeof searchParams.get('refetch') === 'string'
+      ? searchParams.get('refetch')
+      : Array.from(searchParams.getAll('refetch'))?.[0];
 
   console.log(refetchReports, 'refetchReports');
-  console.log(router, 'after refetchreports check');
 
   type viewScreenType =
     | 'loading'

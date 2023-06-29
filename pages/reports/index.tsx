@@ -6,43 +6,35 @@ import ReportTableSkeleton from '../../components/loading/report-table-skeleton'
 import { useTranslation } from 'react-i18next';
 import PageContainer from '../../components/users/page-container';
 import { NewReportDetail } from '../../components/new-reports/models/new-report-detail';
-import { I18nextProvider } from 'react-i18next';
+import NewReportTable from '../../components/new-reports/new-report-table';
 import i18n from '../../i18n';
-import { useRouter } from 'next/router';
+import { I18nextProvider } from 'react-i18next';
+import { useSearchParams } from 'next/navigation';
+const ReportPageComponent: NextPageWithLayout = function () {
+  const {
+    nextJsRouter: router,
+    logoutUser,
+    fetchWrapper,
+  } = useRequestUtilities();
+  console.log(router, 'inside ReportPageComponent after calling hook');
+  const searchParams = useSearchParams();
 
-const ReportPageComponent: NextPageWithLayout = async () => {
-  let router = useRouter();
-  const utilities = useRequestUtilities();
-  const [isMounted, setIsMounted] = useState(false);
-  const [viewScreen, setViewScreen] = useState<
-    'loading' | 'reportsAbsent' | 'reportsPresent' | 'responseError'
-  >('loading');
+  const refetchReports =
+    typeof searchParams.get('refetch') === 'string'
+      ? searchParams.get('refetch')
+      : Array.from(searchParams.getAll('refetch'))?.[0];
+
+  console.log(refetchReports, 'refetchReports');
+
+  type viewScreenType =
+    | 'loading'
+    | 'reportsAbsent'
+    | 'reportsPresent'
+    | 'responseError';
+  const [viewScreen, setViewScreen] = useState<viewScreenType>('loading');
   const [responseErrorMsg, setResponseErrorMsg] = useState('');
   const [data, setData] = useState<NewReportDetail[]>([]);
   const { t } = useTranslation();
-
-  let fetchWrapper = utilities.fetchWrapper;
-  let logoutUser = utilities.logoutUser;
-
-  useEffect(() => {
-    setIsMounted(true);
-    return () => {
-      setIsMounted(false);
-    };
-  }, []);
-
-  let refetchReports: any;
-
-  if (router.isReady && isMounted) {
-    console.log({ router });
-
-    refetchReports =
-      typeof router.query.refetch === 'string'
-        ? router.query.refetch
-        : router.query?.refetch?.[0];
-
-    console.log({ refetchReports });
-  }
 
   const fetchReports = useCallback(async function (Refetch = false) {
     async function handleResponse(response: Response) {
@@ -97,8 +89,13 @@ const ReportPageComponent: NextPageWithLayout = async () => {
     });
   }, []);
 
+  console.log(router, 'before useeffect');
+
   useEffect(() => {
-    if (!router.isReady) return;
+    console.log(
+      'inside page useeffect does this run before hook gets called?',
+      router,
+    );
 
     const accessToken = localStorage.getItem('accessToken');
     if (!accessToken) {
@@ -112,15 +109,9 @@ const ReportPageComponent: NextPageWithLayout = async () => {
       }
       fetchReports(Boolean(refetchReports));
     }
-  }, [router.isReady, refetchReports]);
+  }, [refetchReports]);
 
-  useEffect(() => {
-    if (!router.isReady) return;
-
-    i18n.changeLanguage(router.locale).then(() => {
-      console.log(i18n.language, 'language in reports page'); // Print out the current language
-    });
-  }, [router.isReady, router.locale]);
+  console.log(router, 'after useeffect');
 
   if (viewScreen === 'loading') {
     return (
@@ -165,7 +156,7 @@ const ReportPageComponent: NextPageWithLayout = async () => {
       <div className="py-4 px-6 flex items-center justify-between border-b border-gray-300 font-semibold text-xl text-gray-800">
         {t('reports.report_list_page_title')}
       </div>
-      <p>Hi this is the reports page</p>
+      <NewReportTable data={data} />
     </>
   );
 };

@@ -1,5 +1,7 @@
+'use client'
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+ 
+import { useRouter } from 'next/navigation'
 
 const TestPage = () => {
   const router = useRouter();
@@ -7,6 +9,8 @@ const TestPage = () => {
   const [delayRouter, setDelayRouter] = useState(false);
 
   useEffect(() => {
+    console.log({router}, 'only check this');
+    
     setIsMounted(true);
     return () => {
       setIsMounted(false);
@@ -15,7 +19,7 @@ const TestPage = () => {
 
   useEffect(() => {
     let timer: string | number | NodeJS.Timeout;
-    if (router.isReady) {
+    if (router) {
       timer = setTimeout(() => {
         setDelayRouter(true);
       }, 1000);
@@ -24,19 +28,19 @@ const TestPage = () => {
     return () => {
       clearTimeout(timer);
     };
-  }, [router.isReady]);
+  }, [router]);
 
   useEffect(() => {
     if (!delayRouter || !isMounted) return;
 
-    console.log({ isReady: router.isReady });
+    console.log({ isReady: router });
   }, [delayRouter, isMounted]);
 
   return (
     <div>
       <h1>Test Page</h1>
       {delayRouter && isMounted && (
-        <p>Router is ready: {router.isReady.toString()}</p>
+        <p>Router is ready: {router.toString()}</p>
       )}
     </div>
   );

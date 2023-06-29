@@ -1,13 +1,12 @@
 import React, { useCallback } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 
 function useRequestUtilities() {
   const router = useRouter();
-
+  
   const logoutUser = useCallback(() => {
     console.log(router, 'logoutUser');
 
-    if (!router.isReady) return;
     localStorage.removeItem('userInfo');
     localStorage.removeItem('accessToken');
     localStorage.removeItem('applicationKey');
@@ -28,7 +27,6 @@ function useRequestUtilities() {
     applicationKey?: string;
   }) {
     console.log(router, 'fetchWrapper');
-    if (!router.isReady) return;
     const {
       url,
       method = 'GET',
