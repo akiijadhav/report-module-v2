@@ -6,7 +6,7 @@ function useRequestUtilities() {
 
   const logoutUser = useCallback(() => {
     console.log(router, 'logoutUser');
-    
+
     if (!router.isReady) return;
     localStorage.removeItem('userInfo');
     localStorage.removeItem('accessToken');

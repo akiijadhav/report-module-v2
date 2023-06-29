@@ -17,16 +17,15 @@ const ReportPageComponent: NextPageWithLayout = function () {
     fetchWrapper,
   } = useRequestUtilities();
   console.log(router, 'inside ReportPageComponent after calling hook');
-  
+
   const refetchReports =
     typeof router.query.refetch === 'string'
       ? router.query.refetch
       : router.query?.refetch?.at(0);
 
-      console.log(refetchReports, 'refetchReports');
-      console.log(router, 'after refetchreports check');
-      
-      
+  console.log(refetchReports, 'refetchReports');
+  console.log(router, 'after refetchreports check');
+
   type viewScreenType =
     | 'loading'
     | 'reportsAbsent'
@@ -91,10 +90,13 @@ const ReportPageComponent: NextPageWithLayout = function () {
   }, []);
 
   console.log(router, 'before useeffect');
-  
+
   useEffect(() => {
-    console.log('inside page useeffect does this run before hook gets called?', router);
-    
+    console.log(
+      'inside page useeffect does this run before hook gets called?',
+      router,
+    );
+
     const accessToken = localStorage.getItem('accessToken');
     if (!accessToken) {
       logoutUser();
@@ -110,7 +112,6 @@ const ReportPageComponent: NextPageWithLayout = function () {
   }, [refetchReports]);
 
   console.log(router, 'after useeffect');
-  
 
   if (viewScreen === 'loading') {
     return (
