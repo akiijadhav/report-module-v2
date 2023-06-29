@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 
 function useRequestUtilities() {
   const router = useRouter();
-  
+
   const logoutUser = useCallback(() => {
     console.log(router, 'logoutUser');
 

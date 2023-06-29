@@ -1,7 +1,7 @@
-'use client'
+'use client';
 import React, { useState, useEffect } from 'react';
- 
-import { useRouter } from 'next/navigation'
+
+import { useRouter } from 'next/navigation';
 
 const TestPage = () => {
   const router = useRouter();
@@ -9,8 +9,8 @@ const TestPage = () => {
   const [delayRouter, setDelayRouter] = useState(false);
 
   useEffect(() => {
-    console.log({router}, 'only check this');
-    
+    console.log({ router }, 'only check this');
+
     setIsMounted(true);
     return () => {
       setIsMounted(false);
@@ -39,9 +39,7 @@ const TestPage = () => {
   return (
     <div>
       <h1>Test Page</h1>
-      {delayRouter && isMounted && (
-        <p>Router is ready: {router.toString()}</p>
-      )}
+      {delayRouter && isMounted && <p>Router is ready: {router.toString()}</p>}
     </div>
   );
 };

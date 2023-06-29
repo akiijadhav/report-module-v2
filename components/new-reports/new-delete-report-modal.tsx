@@ -12,6 +12,8 @@ import { NewReportDetail } from './models/new-report-detail';
 import useRequestUtilities from '../hooks/use-request-utilities';
 import { ReportDetail } from './models/report-details';
 
+import { useRouter } from 'next/router';
+
 const notoSansFont = 'noto-sans';
 
 export default function NewDeleteReportModal(props: {
@@ -21,10 +23,10 @@ export default function NewDeleteReportModal(props: {
   incomplete?: boolean;
 }) {
   const { reportData, show, setShow, incomplete = false } = props;
-  const { fetchWrapper, nextJsRouter: router } = useRequestUtilities();
+  const { fetchWrapper } = useRequestUtilities();
   const [isDeletingReport, setIsDeletingReport] = useState(false);
   const [responseError, setResponseError] = useState('');
-
+  const router = useRouter();
   const deleteReport = useCallback(
     function () {
       function initiate() {
