@@ -18,7 +18,7 @@ const TestPage = () => {
     if (router.isReady) {
       timer = setTimeout(() => {
         setDelayRouter(true);
-      }, 10000);
+      }, 1000);
     }
 
     return () => {
