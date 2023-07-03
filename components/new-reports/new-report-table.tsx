@@ -13,9 +13,9 @@ import viewReportIcon from '../../public/icons/view-report.svg';
 import downloadReportIcon from '../../public/icons/download-report.svg';
 import deleteReportIcon from '../../public/icons/delete-report.svg';
 import useRequestUtilities from '../hooks/use-request-utilities';
-import { responseMsgType } from '../ui/notification';
-// import NewDeleteReportModal from './new-delete-report-modal';
-// import NewPreviewReportModal from './new-preview-report-modal';
+import Notification, { responseMsgType } from '../ui/notification';
+import NewDeleteReportModal from './new-delete-report-modal';
+import NewPreviewReportModal from './new-preview-report-modal';
 import { useTranslation } from 'react-i18next';
 
 const monthNames = [
@@ -324,7 +324,7 @@ export default function NewReportTable({ data }: { data: NewReportDetail[] }) {
           ))}
         </tbody>
       </table>
-      {/* {showDeleteReportModal && (
+      {showDeleteReportModal && (
         <NewDeleteReportModal
           show={showDeleteReportModal}
           setShow={setShowDeleteReportModal}
@@ -343,7 +343,7 @@ export default function NewReportTable({ data }: { data: NewReportDetail[] }) {
           showPreviewReportModal={showPreviewReportModal}
           setShowPreviewReportModal={setShowPreviewReportModal}
         />
-      )} */}
+      )}
     </>
   );
 }

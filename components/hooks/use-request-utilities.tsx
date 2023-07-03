@@ -1,3 +1,4 @@
+'use client';
 import React, { useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -5,8 +6,6 @@ function useRequestUtilities() {
   const router = useRouter();
 
   const logoutUser = useCallback(() => {
-    console.log(router, 'logoutUser');
-
     localStorage.removeItem('userInfo');
     localStorage.removeItem('accessToken');
     localStorage.removeItem('applicationKey');
@@ -26,7 +25,6 @@ function useRequestUtilities() {
     handleFinally?: () => any;
     applicationKey?: string;
   }) {
-    console.log(router, 'fetchWrapper');
     const {
       url,
       method = 'GET',

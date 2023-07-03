@@ -7,24 +7,19 @@ import { useTranslation } from 'react-i18next';
 import PageContainer from '../../components/users/page-container';
 import { NewReportDetail } from '../../components/new-reports/models/new-report-detail';
 import NewReportTable from '../../components/new-reports/new-report-table';
-import i18n from '../../i18n';
 import { I18nextProvider } from 'react-i18next';
+import i18n from '../../i18n';
 import { useSearchParams } from 'next/navigation';
+
 const ReportPageComponent: NextPageWithLayout = function () {
   const {
-    nextJsRouter: router,
-    logoutUser,
     fetchWrapper,
+    logoutUser,
+    nextJsRouter: router,
   } = useRequestUtilities();
-  console.log(router, 'inside ReportPageComponent after calling hook');
-  const searchParams = useSearchParams();
+  const search = useSearchParams();
 
-  const refetchReports =
-    typeof searchParams.get('refetch') === 'string'
-      ? searchParams.get('refetch')
-      : Array.from(searchParams.getAll('refetch'))?.[0];
-
-  console.log(refetchReports, 'refetchReports');
+  const refetchReports = search.getAll('refetch')[0];;
 
   type viewScreenType =
     | 'loading'
@@ -89,14 +84,7 @@ const ReportPageComponent: NextPageWithLayout = function () {
     });
   }, []);
 
-  console.log(router, 'before useeffect');
-
   useEffect(() => {
-    console.log(
-      'inside page useeffect does this run before hook gets called?',
-      router,
-    );
-
     const accessToken = localStorage.getItem('accessToken');
     if (!accessToken) {
       logoutUser();
@@ -110,8 +98,6 @@ const ReportPageComponent: NextPageWithLayout = function () {
       fetchReports(Boolean(refetchReports));
     }
   }, [refetchReports]);
-
-  console.log(router, 'after useeffect');
 
   if (viewScreen === 'loading') {
     return (
@@ -164,8 +150,8 @@ const ReportPageComponent: NextPageWithLayout = function () {
 ReportPageComponent.getLayout = function getLayout(page: ReactElement) {
   return (
     <UserLayout>
-      <PageContainer>{page}</PageContainer>
-    </UserLayout>
+    <PageContainer>{page}</PageContainer>
+  </UserLayout>
   );
 };
 

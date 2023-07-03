@@ -6,7 +6,7 @@ import logoutIcon from '../../public/icons/logout-icon.svg';
 import useRequestUtilities from '../hooks/use-request-utilities';
 import Language from '../users/language';
 import { useTranslation } from 'react-i18next';
-
+import { usePathname } from 'next/navigation';
 const notoSansFont = 'noto-sans';
 
 export default function UserLayout({
@@ -14,6 +14,11 @@ export default function UserLayout({
 }: {
   children: ReactElement | ReactElement[];
 }) {
+  const {
+    fetchWrapper,
+    logoutUser,
+    nextJsRouter: router,
+  } = useRequestUtilities();
   const [step, setStep] = useState<number>(1);
 
   const handlePrev = (): void => {
@@ -26,11 +31,6 @@ export default function UserLayout({
     router.push('/reports');
   };
 
-  const {
-    fetchWrapper,
-    logoutUser,
-    nextJsRouter: router,
-  } = useRequestUtilities();
   const { t } = useTranslation();
   const menuChoices = [
     {
@@ -45,18 +45,18 @@ export default function UserLayout({
   const [userName, setUserName] = useState();
   const [profilePhotoURL, setProfilePhotoURL] = useState();
   const [userInfo, setUserInfo] = useState(null);
-
+  const pathname = usePathname()
 
   useEffect(() => {
     setShowChoices(false);
-    if (router.route === '/data-sources') {
+    if (pathname === '/data-sources') {
       setStep(1);
-    } else if (router.route === '/reports') {
+    } else if (pathname === '/reports') {
       setStep(2);
     } else {
       setStep(4);
     }
-  }, [router.route]);
+  }, [pathname]);
 
 
   useEffect(() => {
