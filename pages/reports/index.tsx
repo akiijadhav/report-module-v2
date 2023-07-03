@@ -12,7 +12,11 @@ import i18n from '../../i18n';
 import { useSearchParams } from 'next/navigation';
 
 const ReportPageComponent: NextPageWithLayout = function () {
-  const { fetchWrapper, logoutUser, nextJsRouter: router } = useRequestUtilities();
+  const {
+    fetchWrapper,
+    logoutUser,
+    nextJsRouter: router,
+  } = useRequestUtilities();
   console.log(router, 'router from custom hook');
   const search = useSearchParams();
   const refetchReports = search.getAll('refetch')[0];
