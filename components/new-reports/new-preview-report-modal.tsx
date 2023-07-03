@@ -23,7 +23,7 @@ export default function PreviewReportModal(props: {
     }>
   >;
   reportData: NewReportDetail;
-  router: NextRouter
+  router: NextRouter;
 }) {
   const { showPreviewReportModal, setShowPreviewReportModal, reportData } =
     props;
