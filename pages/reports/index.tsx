@@ -11,7 +11,6 @@ import i18n from '../../i18n';
 import { useRouter } from 'next/router';
 
 const ReportPageComponent: NextPageWithLayout = function () {
-
   const router = useRouter();
   console.log(router, 'router from custom hook');
   const refetchReports =
@@ -219,7 +218,7 @@ const ReportPageComponent: NextPageWithLayout = function () {
       <div className="py-4 px-6 flex items-center justify-between border-b border-gray-300 font-semibold text-xl text-gray-800">
         {t('reports.report_list_page_title')}
       </div>
-      <NewReportTable data={data} router={router}/>
+      <NewReportTable data={data} router={router} />
     </>
   );
 };
