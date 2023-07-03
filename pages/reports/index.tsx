@@ -19,7 +19,7 @@ const ReportPageComponent: NextPageWithLayout = function () {
   } = useRequestUtilities();
   const search = useSearchParams();
 
-  const refetchReports = search.getAll('refetch')[0];;
+  const refetchReports = search.getAll('refetch')[0];
 
   type viewScreenType =
     | 'loading'
@@ -150,8 +150,8 @@ const ReportPageComponent: NextPageWithLayout = function () {
 ReportPageComponent.getLayout = function getLayout(page: ReactElement) {
   return (
     <UserLayout>
-    <PageContainer>{page}</PageContainer>
-  </UserLayout>
+      <PageContainer>{page}</PageContainer>
+    </UserLayout>
   );
 };
 
