@@ -3,6 +3,7 @@ import React, { Dispatch, SetStateAction, useState, Fragment } from 'react';
 import { NewReportDetail } from './models/new-report-detail';
 import crossIcon from '../../public/icons/cross-icon.svg';
 import Image from 'next/image';
+import { NextRouter } from 'next/router';
 // import { Document, Page } from 'react-pdf';
 // import BubbleLoader from '../loading/bubble-loader';
 // import DisplayPdfError from '../reports/common/display-pdf-error';
@@ -22,6 +23,7 @@ export default function PreviewReportModal(props: {
     }>
   >;
   reportData: NewReportDetail;
+  router: NextRouter
 }) {
   const { showPreviewReportModal, setShowPreviewReportModal, reportData } =
     props;
