@@ -4,7 +4,8 @@ import { useRouter } from 'next/navigation';
 
 function useRequestUtilities() {
   const router = useRouter();
-
+  console.log(router, 'state of this inside reqhook');
+  
   const logoutUser = useCallback(() => {
     localStorage.removeItem('userInfo');
     localStorage.removeItem('accessToken');
