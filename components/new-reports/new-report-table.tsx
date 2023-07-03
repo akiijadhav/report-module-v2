@@ -17,7 +17,7 @@ import Notification, { responseMsgType } from '../ui/notification';
 import NewDeleteReportModal from './new-delete-report-modal';
 import NewPreviewReportModal from './new-preview-report-modal';
 import { useTranslation } from 'react-i18next';
-import { useRouter } from 'next/navigation';
+import { NextRouter } from 'next/router';
 
 const monthNames = [
   'January',
@@ -34,8 +34,7 @@ const monthNames = [
   'December',
 ];
 
-export default function NewReportTable({ data }: { data: NewReportDetail[] }) {
-  const router = useRouter();
+export default function NewReportTable({ data, router }: { data: NewReportDetail[], router: NextRouter }) {
   const [showDeleteReportModal, setShowDeleteReportModal] = useState(false);
   const [selectedReportData, setSelectedReportData] =
     useState<NewReportDetail>();
@@ -403,6 +402,7 @@ export default function NewReportTable({ data }: { data: NewReportDetail[] }) {
           show={showDeleteReportModal}
           setShow={setShowDeleteReportModal}
           reportData={selectedReportData}
+          router={router}
         />
       )}
       {reportUpdateMsg?.msg ? (

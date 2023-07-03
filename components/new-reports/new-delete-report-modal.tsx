@@ -11,7 +11,7 @@ import crossIcon from '../../public/icons/cross-icon.svg';
 import { NewReportDetail } from './models/new-report-detail';
 import useRequestUtilities from '../hooks/use-request-utilities';
 import { ReportDetail } from './models/report-details';
-import { useRouter } from 'next/navigation';
+import router, { NextRouter } from 'next/router';
 const notoSansFont = 'noto-sans';
 
 export default function NewDeleteReportModal(props: {
@@ -19,9 +19,9 @@ export default function NewDeleteReportModal(props: {
   show: boolean;
   setShow: Dispatch<SetStateAction<boolean>>;
   incomplete?: boolean;
+  router: NextRouter
 }) {
   const { reportData, show, setShow, incomplete = false } = props;
-  const router = useRouter();
   console.log(router, 'being called from newDeleteRport');
 
   const [isDeletingReport, setIsDeletingReport] = useState(false);

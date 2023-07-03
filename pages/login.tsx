@@ -5,7 +5,7 @@ import RocPasswordInput from '../components/forms/password-input';
 import RocFormContainer from '../components/ui/form-container';
 import React, { ReactElement, useState, useEffect } from 'react';
 import Layout from '../components/layouts/layout';
-import { useRouter } from 'next/navigation';
+import { useRouter } from 'next/router';
 import useRequestUtilities from '../components/hooks/use-request-utilities';
 import { useTranslation } from 'react-i18next';
 import Image from 'next/image';

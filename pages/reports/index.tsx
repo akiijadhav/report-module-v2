@@ -1,5 +1,4 @@
 import React, { ReactElement, useCallback, useEffect, useState } from 'react';
-// import useRequestUtilities from '../../components/hooks/use-request-utilities';
 import UserLayout from '../../components/layouts/user-layout';
 import { NextPageWithLayout } from '../_app';
 import ReportTableSkeleton from '../../components/loading/report-table-skeleton';
@@ -9,18 +8,16 @@ import { NewReportDetail } from '../../components/new-reports/models/new-report-
 import NewReportTable from '../../components/new-reports/new-report-table';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/router';
 
 const ReportPageComponent: NextPageWithLayout = function () {
-  // const {
-  //   fetchWrapper,
-  //   logoutUser,
-  //   nextJsRouter: router,
-  // } = useRequestUtilities();
+
   const router = useRouter();
   console.log(router, 'router from custom hook');
-  const search = useSearchParams();
-  const refetchReports = search.getAll('refetch')[0];
+  const refetchReports =
+    typeof router.query.refetch === 'string'
+      ? router.query.refetch
+      : router.query?.refetch?.at(0);
 
   type viewScreenType =
     | 'loading'
@@ -222,7 +219,7 @@ const ReportPageComponent: NextPageWithLayout = function () {
       <div className="py-4 px-6 flex items-center justify-between border-b border-gray-300 font-semibold text-xl text-gray-800">
         {t('reports.report_list_page_title')}
       </div>
-      <NewReportTable data={data} />
+      <NewReportTable data={data} router={router}/>
     </>
   );
 };
