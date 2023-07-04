@@ -4,14 +4,16 @@ import UserLayout from '../components/layouts/user-layout';
 import PageHeaderSkeleton from '../components/loading/page-header-skeleton';
 import UserTableSkeleton from '../components/loading/user-table-skeleton';
 import { NextPageWithLayout } from './_app';
+import { useRouter } from 'next/router';
 
 const HomePage: NextPageWithLayout = (props) => {
-  const { logoutUser, nextJsRouter: router } = useRequestUtilities();
+  const router = useRouter();
+  const { logoutUser } = useRequestUtilities(router);
 
   useEffect(() => {
     const accessToken = localStorage.getItem('accessToken');
     if (!accessToken) {
-      router.push('/login');
+      logoutUser();
     } else {
       router.push('/reports');
     }
@@ -26,7 +28,8 @@ const HomePage: NextPageWithLayout = (props) => {
 };
 
 HomePage.getLayout = function getLayout(page: ReactElement) {
-  return <UserLayout>{page}</UserLayout>;
+  const router = useRouter();
+  return <UserLayout router={router}>{page}</UserLayout>;
 };
 
 export default HomePage;

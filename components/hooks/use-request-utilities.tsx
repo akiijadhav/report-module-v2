@@ -1,8 +1,7 @@
 import React, { useCallback } from 'react';
-import { useRouter } from 'next/router';
+import { NextRouter } from 'next/router';
 
-function useRequestUtilities() {
-  const router = useRouter();
+function useRequestUtilities(router: NextRouter) {
   console.log(router, 'state of this inside reqhook');
 
   const logoutUser = useCallback(() => {
@@ -86,7 +85,6 @@ function useRequestUtilities() {
   []);
 
   return {
-    nextJsRouter: router,
     logoutUser,
     fetchWrapper,
   };

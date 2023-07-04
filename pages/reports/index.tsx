@@ -1,4 +1,4 @@
-import { ReactElement, useCallback, useEffect, useState } from 'react';
+import React, { ReactElement, useCallback, useEffect, useState } from 'react';
 import useRequestUtilities from '../../components/hooks/use-request-utilities';
 import UserLayout from '../../components/layouts/user-layout';
 import { NextPageWithLayout } from '../_app';
@@ -8,14 +8,12 @@ import PageContainer from '../../components/users/page-container';
 import { NewReportDetail } from '../../components/new-reports/models/new-report-detail';
 import NewReportTable from '../../components/new-reports/new-report-table';
 import { I18nextProvider } from 'react-i18next';
+import { useRouter } from 'next/router';
 import i18n from '../../i18n';
 
 const ReportPageComponent: NextPageWithLayout = function () {
-  const {
-    fetchWrapper,
-    logoutUser,
-    nextJsRouter: router,
-  } = useRequestUtilities();
+  const router = useRouter();
+  const { fetchWrapper, logoutUser } = useRequestUtilities(router);
   const refetchReports =
     typeof router.query.refetch === 'string'
       ? router.query.refetch
@@ -147,16 +145,17 @@ const ReportPageComponent: NextPageWithLayout = function () {
 };
 
 ReportPageComponent.getLayout = function getLayout(page: ReactElement) {
+  const router = useRouter();
   return (
-    <UserLayout>
+    <UserLayout router={router}>
       <PageContainer>{page}</PageContainer>
     </UserLayout>
   );
 };
 
-export const ReportPage = () => (
+export const ReportPage = (props: any) => (
   <I18nextProvider i18n={i18n}>
-    <ReportPageComponent />
+    <ReportPageComponent {...props} />
   </I18nextProvider>
 );
 

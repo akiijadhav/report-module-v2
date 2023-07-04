@@ -18,7 +18,7 @@ import NewDeleteReportModal from './new-delete-report-modal';
 import NewPreviewReportModal from './new-preview-report-modal';
 import Notification from '../ui/notification';
 import { useTranslation } from 'react-i18next';
-import { NextRouter, useRouter } from 'next/router';
+import { NextRouter } from 'next/router';
 
 const monthNames = [
   'January',
@@ -42,7 +42,7 @@ export default function NewReportTable({
   data: NewReportDetail[];
   router: NextRouter;
 }) {
-  const { fetchWrapper } = useRequestUtilities();
+  const { fetchWrapper } = useRequestUtilities(router);
   const [showDeleteReportModal, setShowDeleteReportModal] = useState(false);
   const [selectedReportData, setSelectedReportData] =
     useState<NewReportDetail>();
@@ -337,6 +337,7 @@ export default function NewReportTable({
           show={showDeleteReportModal}
           setShow={setShowDeleteReportModal}
           reportData={selectedReportData}
+          router={router}
         />
       )}
       {reportUpdateMsg?.msg ? (
@@ -347,7 +348,6 @@ export default function NewReportTable({
       ) : null}
       {showPreviewReportModal.show && (
         <NewPreviewReportModal
-          router={router}
           reportData={selectedReportData}
           showPreviewReportModal={showPreviewReportModal}
           setShowPreviewReportModal={setShowPreviewReportModal}

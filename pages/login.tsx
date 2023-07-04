@@ -14,12 +14,11 @@ import RocCircularImage from '../components/ui/circular-image';
 import LoginForm from '../public/icons/login-form-img.svg';
 
 const LoginPage: NextPageWithLayout = () => {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [responseError, setResponseError] = useState('');
-  const { fetchWrapper } = useRequestUtilities();
+  const { fetchWrapper } = useRequestUtilities(router);
   const { t } = useTranslation();
-
-  const router = useRouter();
 
   const validEmailDomains: string[] = JSON.parse(
     process.env.NEXT_PUBLIC_VALID_EMAIL_DOMAINS,
