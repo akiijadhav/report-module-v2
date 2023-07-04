@@ -23,7 +23,7 @@ module.exports = {
       assert: require.resolve('assert'),
       buffer: require.resolve('buffer'),
       util: require.resolve('util'),
-      fs: false,
+      fs: true,
       stream: require.resolve('stream-browserify'),
       zlib: require.resolve('browserify-zlib'),
       path: require.resolve('path-browserify'),
