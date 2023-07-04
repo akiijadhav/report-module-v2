@@ -16,19 +16,19 @@ module.exports = {
     libraryTarget: 'umd',
     umdNamedDefine: true,
     globalObject: 'this',
-    publicPath: ''
+    publicPath: './', // Adjust this to match your asset server path if needed.
+    assetModuleFilename: 'assets/[folder]/[name][ext]'
   },
   resolve: {
     fallback: {
       assert: require.resolve('assert'),
       buffer: require.resolve('buffer'),
       util: require.resolve('util'),
-      fs: true,
+      fs: false,
       stream: require.resolve('stream-browserify'),
       zlib: require.resolve('browserify-zlib'),
       path: require.resolve('path-browserify'),
     },
-    // existing resolve properties
     extensions: ['.ts', '.tsx', '.js', '.jsx'],
     alias: {
       '@': path.resolve(__dirname),
@@ -57,29 +57,45 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
+        generator: {
+          filename: 'public/images/[name][ext]' // Output images in the 'public/images' folder
+        }
       },
+      {
+        test: /\.(ico|svg)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'public/icons/[name][ext]' // Output icons in the 'public/icons' folder
+        }
+      },
+      {
+        test: /\.(woff|woff2|ttf)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'public/fonts/[name][ext]' // output icons in the 'public/fonts' folder
+        }
+      }
     ],
   },
   devtool: 'source-map',
   externals: {
     react: 'react',
     'react-dom': 'react-dom',
-    next: 'next',
   },
   plugins: [
     new MiniCssExtractPlugin({
       filename: '[name].css',
     }),
     new BundleAnalyzerPlugin({
-      analyzerMode: 'static', // Generates a static report file
-      openAnalyzer: false, // Will not open the report in a new window
+      analyzerMode: 'static',
+      openAnalyzer: false,
     }),
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin({
       patterns: [
-        { from: 'public', to: 'public' } // copies all files from public to dist/public
+        { from: 'public/locales', to: 'public/locales' }
       ],
     }),
   ],
@@ -88,7 +104,7 @@ module.exports = {
     minimizer: [
       new TerserPlugin({
         terserOptions: {
-          sourceMap: true, // Enable source map support
+          sourceMap: true,
         },
       }),
     ],
