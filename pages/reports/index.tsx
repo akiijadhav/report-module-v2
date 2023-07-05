@@ -9,10 +9,15 @@ import { NewReportDetail } from '../../components/new-reports/models/new-report-
 import NewReportTable from '../../components/new-reports/new-report-table';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../../i18n';
-import { useRouterContext } from '../../components/routerContext/routerContext';
+import { NextRouter } from 'next/router';
+interface ReportPageProps {
+  router: NextRouter;
+  app: string;
+}
 
-const ReportPageComponent: NextPageWithLayout = function () {
-  const router = useRouterContext();
+const ReportPageWrapper: NextPageWithLayout<ReportPageProps> = ({router, app }) => {
+  console.log(`${router} from ${app} as props` );
+  
   const { fetchWrapper, logoutUser } = useRequestUtilities(router);
   const refetchReports =
     typeof router.query.refetch === 'string'
@@ -144,7 +149,7 @@ const ReportPageComponent: NextPageWithLayout = function () {
   );
 };
 
-ReportPageComponent.getLayout = function getLayout(page: ReactElement) {
+ReportPageWrapper.getLayout = function getLayout(page: ReactElement) {
   return (
     <UserLayout>
       <PageContainer>{page}</PageContainer>
@@ -154,7 +159,7 @@ ReportPageComponent.getLayout = function getLayout(page: ReactElement) {
 
 export const ReportPage = (props: any) => (
   <I18nextProvider i18n={i18n}>
-    <ReportPageComponent {...props} />
+    <ReportPageWrapper {...props} />
   </I18nextProvider>
 );
 

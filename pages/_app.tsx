@@ -8,6 +8,7 @@ import {
   RouterProvider,
   useRouterContext,
 } from '../components/routerContext/routerContext';
+import { useRouter } from 'next/router'; // import useRouter
 
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
@@ -56,8 +57,10 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout ?? ((page) => page);
 
+  const router = useRouter(); // get router instance
+
   return (
-    <RouterProvider>
+    <RouterProvider router={router}> {/* pass router instance */}
       <I18nextProvider i18n={i18n}>
         <InnerComponent
           Component={Component}
