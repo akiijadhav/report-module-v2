@@ -3,7 +3,7 @@ import UserLayout from '../components/layouts/user-layout';
 import PageContainer from '../components/users/page-container';
 
 const MyPage = ({ router, app }) => {
-  console.log(`router is coming from app: ${app}, ${router}`)
+  console.log(`router is coming from app: ${app}, ${router}`);
 
   return (
     <div>

@@ -15,9 +15,12 @@ interface ReportPageProps {
   app: string;
 }
 
-const ReportPageWrapper: NextPageWithLayout<ReportPageProps> = ({router, app }) => {
-  console.log(`${router} from ${app} as props` );
-  
+const ReportPageWrapper: NextPageWithLayout<ReportPageProps> = ({
+  router,
+  app,
+}) => {
+  console.log(`${router} from ${app} as props`);
+
   const { fetchWrapper, logoutUser } = useRequestUtilities(router);
   const refetchReports =
     typeof router.query.refetch === 'string'

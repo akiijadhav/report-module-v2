@@ -60,7 +60,9 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   const router = useRouter(); // get router instance
 
   return (
-    <RouterProvider router={router}> {/* pass router instance */}
+    <RouterProvider router={router}>
+      {' '}
+      {/* pass router instance */}
       <I18nextProvider i18n={i18n}>
         <InnerComponent
           Component={Component}
