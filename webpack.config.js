@@ -16,7 +16,7 @@ module.exports = {
     libraryTarget: 'umd',
     umdNamedDefine: true,
     globalObject: 'this',
-    publicPath: '/public/', // Adjust this to match your asset server path if needed.
+    publicPath: '/', // Adjust this to match your asset server path if needed.
   },
   resolve: {
     fallback: {
@@ -59,21 +59,21 @@ module.exports = {
         test: /\.(png|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'public/images/[name][ext]' // Output images in the 'public/images' folder
+          filename: 'images/[name][ext]' // Output images in the 'public/images' folder
         }
       },
       {
         test: /\.(ico|svg)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'public/icons/[name][ext]' // Output icons in the 'public/icons' folder
+          filename: 'icons/[name][ext]' // Output icons in the 'public/icons' folder
         }
       },
       {
         test: /\.(woff|woff2|ttf)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'public/fonts/[name][ext]' // output icons in the 'public/fonts' folder
+          filename: 'fonts/[name][ext]' // output icons in the 'public/fonts' folder
         }
       }
     ],
