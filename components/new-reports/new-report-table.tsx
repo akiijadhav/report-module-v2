@@ -37,7 +37,7 @@ const monthNames = [
 
 export default function NewReportTable({
   data,
-  router,
+  router
 }: {
   data: NewReportDetail[];
   router: NextRouter;

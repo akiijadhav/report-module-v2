@@ -26,6 +26,9 @@ export default function NewDeleteReportModal(props: {
   const { fetchWrapper } = useRequestUtilities(router);
   const [isDeletingReport, setIsDeletingReport] = useState(false);
   const [responseError, setResponseError] = useState('');
+
+  console.log(router, 'router inside delete component');
+  
   const deleteReport = useCallback(
     function () {
       function initiate() {
