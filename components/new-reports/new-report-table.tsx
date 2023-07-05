@@ -35,7 +35,13 @@ const monthNames = [
   'December',
 ];
 
-export default function NewReportTable({ data, router }: { data: NewReportDetail[], router: NextRouter }) {
+export default function NewReportTable({
+  data,
+  router,
+}: {
+  data: NewReportDetail[];
+  router: NextRouter;
+}) {
   const { fetchWrapper } = useRequestUtilities(router);
   const [showDeleteReportModal, setShowDeleteReportModal] = useState(false);
   const [selectedReportData, setSelectedReportData] =

@@ -147,7 +147,7 @@ const ReportPageWrapper: NextPageWithLayout<ReportPageProps> = ({
       <div className="py-4 px-6 flex items-center justify-between border-b border-gray-300 font-semibold text-xl text-gray-800">
         {t('reports.report_list_page_title')}
       </div>
-      <NewReportTable data={data} router={router}/>
+      <NewReportTable data={data} router={router} />
     </>
   );
 };
