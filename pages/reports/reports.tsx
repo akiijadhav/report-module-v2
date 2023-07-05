@@ -11,7 +11,6 @@ import {
   getCoreRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { useRouter } from 'next/router';
 
 const ReportPageComponent = () => {
   const [countries, setCountries] = useState([]);
@@ -100,8 +99,7 @@ const ReportPageComponent = () => {
 };
 
 ReportPageComponent.getLayout = function getLayout(page: ReactElement) {
-  const router = useRouter();
-  return <UserLayout router={router}>{page}</UserLayout>;
+  return <UserLayout>{page}</UserLayout>;
 };
 
 export const ReportPage = () => (

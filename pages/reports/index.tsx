@@ -8,11 +8,11 @@ import PageContainer from '../../components/users/page-container';
 import { NewReportDetail } from '../../components/new-reports/models/new-report-detail';
 import NewReportTable from '../../components/new-reports/new-report-table';
 import { I18nextProvider } from 'react-i18next';
-import { useRouter } from 'next/router';
 import i18n from '../../i18n';
+import { useRouterContext } from '../../components/routerContext/routerContext';
 
 const ReportPageComponent: NextPageWithLayout = function () {
-  const router = useRouter();
+  const router = useRouterContext();
   const { fetchWrapper, logoutUser } = useRequestUtilities(router);
   const refetchReports =
     typeof router.query.refetch === 'string'
@@ -139,15 +139,14 @@ const ReportPageComponent: NextPageWithLayout = function () {
       <div className="py-4 px-6 flex items-center justify-between border-b border-gray-300 font-semibold text-xl text-gray-800">
         {t('reports.report_list_page_title')}
       </div>
-      <NewReportTable data={data} router={router} />
+      <NewReportTable data={data} />
     </>
   );
 };
 
 ReportPageComponent.getLayout = function getLayout(page: ReactElement) {
-  const router = useRouter();
   return (
-    <UserLayout router={router}>
+    <UserLayout>
       <PageContainer>{page}</PageContainer>
     </UserLayout>
   );

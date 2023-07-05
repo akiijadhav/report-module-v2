@@ -11,7 +11,7 @@ import crossIcon from '../../public/icons/cross-icon.svg';
 import { NewReportDetail } from './models/new-report-detail';
 import useRequestUtilities from '../hooks/use-request-utilities';
 import { ReportDetail } from './models/report-details';
-import { NextRouter } from 'next/router';
+import { useRouterContext } from '../routerContext/routerContext';
 
 const notoSansFont = 'noto-sans';
 
@@ -20,15 +20,15 @@ export default function NewDeleteReportModal(props: {
   show: boolean;
   setShow: Dispatch<SetStateAction<boolean>>;
   incomplete?: boolean;
-  router: NextRouter;
 }) {
-  const { reportData, show, setShow, incomplete = false, router } = props;
+  const router = useRouterContext();
+  const { reportData, show, setShow, incomplete = false } = props;
   const { fetchWrapper } = useRequestUtilities(router);
   const [isDeletingReport, setIsDeletingReport] = useState(false);
   const [responseError, setResponseError] = useState('');
 
   console.log(router, 'router inside delete component');
-  
+
   const deleteReport = useCallback(
     function () {
       function initiate() {

@@ -4,7 +4,11 @@ import type { NextPage } from 'next';
 import type { AppProps } from 'next/app';
 import i18n from '../i18n';
 import '../styles/globals.css';
-import { useRouter } from 'next/router';
+import {
+  RouterProvider,
+  useRouterContext,
+} from '../components/routerContext/routerContext';
+
 // eslint-disable-next-line @typescript-eslint/ban-types
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -14,8 +18,16 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout;
 };
 
-export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
-  const router = useRouter();
+function InnerComponent({
+  Component,
+  pageProps,
+  getLayout,
+}: {
+  Component: NextPageWithLayout;
+  pageProps: any;
+  getLayout: (page: ReactNode) => ReactNode;
+}) {
+  const router = useRouterContext();
 
   useEffect(() => {
     if (localStorage.getItem('language')) {
@@ -37,12 +49,22 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     });
   }, [router.locale]);
 
+  return getLayout(<Component {...pageProps} />);
+}
+
+export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
   // Use the layout defined at the page level, if available
   const getLayout = Component.getLayout ?? ((page) => page);
 
-  return getLayout(
-    <I18nextProvider i18n={i18n}>
-      <Component key={router.asPath} {...pageProps} />
-    </I18nextProvider>,
+  return (
+    <RouterProvider>
+      <I18nextProvider i18n={i18n}>
+        <InnerComponent
+          Component={Component}
+          pageProps={pageProps}
+          getLayout={getLayout}
+        />
+      </I18nextProvider>
+    </RouterProvider>
   );
 }

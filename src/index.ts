@@ -4,3 +4,7 @@ export { default as HomePage } from '../pages/index';
 export { ReportPage as ReportPageComponent1 } from '../pages/reports/index';
 export { ReportPage as ReportPageComponent2 } from '../pages/reports/reports';
 export { default as NewReportTable } from '../components/new-reports/new-report-table';
+export {
+  RouterProvider,
+  useRouterContext,
+} from '../components/routerContext/routerContext';

@@ -12,9 +12,10 @@ import Image from 'next/image';
 import loaderIcon from '../public/icons/loader-gray.svg';
 import RocCircularImage from '../components/ui/circular-image';
 import LoginForm from '../public/icons/login-form-img.svg';
+import { useRouterContext } from '../components/routerContext/routerContext';
 
 const LoginPage: NextPageWithLayout = () => {
-  const router = useRouter();
+  const router = useRouterContext();
   const [loading, setLoading] = useState(false);
   const [responseError, setResponseError] = useState('');
   const { fetchWrapper } = useRequestUtilities(router);
