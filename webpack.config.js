@@ -16,7 +16,7 @@ module.exports = {
     libraryTarget: 'umd',
     umdNamedDefine: true,
     globalObject: 'this',
-    publicPath: '/', // Adjust this to match your asset server path if needed.
+    publicPath: '/public/', // Adjust this to match your asset server path if needed.
   },
   resolve: {
     fallback: {

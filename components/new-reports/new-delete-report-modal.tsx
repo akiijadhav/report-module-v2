@@ -12,6 +12,7 @@ import { NewReportDetail } from './models/new-report-detail';
 import useRequestUtilities from '../hooks/use-request-utilities';
 import { ReportDetail } from './models/report-details';
 import { useRouterContext } from '../routerContext/routerContext';
+import { NextRouter } from 'next/router';
 
 const notoSansFont = 'noto-sans';
 
@@ -20,9 +21,9 @@ export default function NewDeleteReportModal(props: {
   show: boolean;
   setShow: Dispatch<SetStateAction<boolean>>;
   incomplete?: boolean;
+  router:NextRouter
 }) {
-  const router = useRouterContext();
-  const { reportData, show, setShow, incomplete = false } = props;
+  const { reportData, show, setShow, incomplete = false, router } = props;
   const { fetchWrapper } = useRequestUtilities(router);
   const [isDeletingReport, setIsDeletingReport] = useState(false);
   const [responseError, setResponseError] = useState('');
