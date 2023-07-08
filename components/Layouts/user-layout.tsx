@@ -7,6 +7,7 @@ import useRequestUtilities from '../hooks/use-request-utilities';
 import Language from '../users/language';
 import { useTranslation } from 'react-i18next';
 import { usePathname } from 'next/navigation';
+import { useRouterContext } from '../routerContext/routerContext';
 const notoSansFont = 'noto-sans';
 
 export default function UserLayout({
@@ -14,11 +15,8 @@ export default function UserLayout({
 }: {
   children: ReactElement | ReactElement[];
 }) {
-  const {
-    fetchWrapper,
-    logoutUser,
-    nextJsRouter: router,
-  } = useRequestUtilities();
+  const router = useRouterContext();
+  const { logoutUser } = useRequestUtilities(router);
   const [step, setStep] = useState<number>(1);
 
   const handlePrev = (): void => {
@@ -45,7 +43,7 @@ export default function UserLayout({
   const [userName, setUserName] = useState();
   const [profilePhotoURL, setProfilePhotoURL] = useState();
   const [userInfo, setUserInfo] = useState(null);
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   useEffect(() => {
     setShowChoices(false);
@@ -57,7 +55,6 @@ export default function UserLayout({
       setStep(4);
     }
   }, [pathname]);
-
 
   useEffect(() => {
     setUserInfo(JSON.parse(localStorage.getItem('userInfo')));
