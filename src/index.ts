@@ -9,3 +9,4 @@ export {
   useRouterContext,
 } from '../components/routerContext/routerContext';
 export { default as MyPage } from '../pages/myPage';
+export { default as test} from '../pages/reports/test';
